@@ -119,7 +119,7 @@ CREATE DATABASE quantifico;
 
 2. Start Backend:
 ```bash
-python app_postgresql.py
+python app_postgresql.py # or app.py for excel backend
 ```
 
 3. Launch Frontend:
