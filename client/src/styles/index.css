@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+
+.image-container {
+    width: 14rem; /* Slightly larger frame */
+    height: 14rem; /* Maintain square proportions */
+    overflow: hidden;
+    border-radius: 0.875rem; /* Smooth rounded corners */
+    background-color: #1b1b1b; /* Subtle dark tone to separate image from the background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem; /* Push other content down */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); /* Soft neon glow around the frame */
+  }
+  
+  
+  .player-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Keeps the entire image visible */
+    object-position: top; /* Focuses on the top of the image, ideal for profile pics */
+    border-radius: 0.875rem; /* Keep the rounded corners */
+    background-color: transparent; /* Avoid unwanted backgrounds behind images */
+  }
+  
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .min-h-screen {
+    padding-bottom: 8rem;
+  }
