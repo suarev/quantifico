@@ -18,7 +18,10 @@ Built with a robust Python stack:
 - **Flask**: Powers our RESTful API endpoints
 - **PostgreSQL/Excel**: Flexible database solutions (see Database Evolution section)
 - **pandas & scikit-learn**: Handles complex statistical analysis
-- **SofaScore API Integration**: Real-time match data collection
+- **Data Integration Layer**:
+  - SofaScore API: Real-time match and positional data
+  - FBref & StatsBomb: Comprehensive player statistics and performance metrics
+  - Google Custom Search API: Dynamic player image retrieval
 
 ## Core Features & Technical Deep Dive
 
