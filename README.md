@@ -2,6 +2,10 @@
 
 Quantifico (Quant + Magnifico) is your go-to dashboard for finding your team's next magnifico through data! Born from the idea that every football team is searching for their game-changing player, this analytics platform transforms complex player statistics into clear, interactive insights all in a single unified view.
 
+### Preview
+![image](https://github.com/user-attachments/assets/6284d8e6-df1a-4728-8f97-64aee61892ad)
+
+
 ## Overview
 Quantifico is a full-stack web application that combines five core components of player analysis into a single, dynamic dashboard. Currently focused on Premier League 2023/24 season data, this comprehensive toolkit includes a radar chart for performance metrics comparison, a parallel coordinates plot for team-wide analysis, a biplot leveraging PCA for performance distribution, a detailed heatmap showcasing positional tendencies, and a responsive player profile display. Built with React for the frontend and Flask powering the backend, the application integrates data from multiple sources including FBref, StatsBomb, and Sofascore to provide a complete analytical view of player performance. The modular architecture is designed to accommodate future league expansions and additional seasons.
 ## Technical Implementation
