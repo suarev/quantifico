@@ -70,65 +70,134 @@ Built with a robust Python stack:
 - Scalable architecture
 - Proper relationship management
 
+
 ## Setup Guide
 
 ### Prerequisites
-- Node.js 
+- Node.js (v14 or later)
 - Python 3.8+
-- PostgreSQL (for postgresql version)
+- npm (Node Package Manager)
+- PostgreSQL (optional, for PostgreSQL version)
 
-### Environment Setup
-
-1. Frontend Configuration:
-```bash
-cd client
-npm install
-
-# Create .env file:
-REACT_APP_GOOGLE_API_KEY=your_key
-REACT_APP_GOOGLE_CX=your_cx
+### Project Structure
+```
+quantifico/
+├── client/          # React frontend
+├── server/          # Flask backend
+│   └── data/        # Contains data files
+│       ├── premier_league_merged_stats_labeled_2324_fbref.xlsx
+│       └── statisman_db.sql
 ```
 
-2. Backend Configuration:
-```bash
-cd server
-python -m venv venv
-source venv/bin/activate  # Windows: .\venv\Scripts\activate
-pip install -r requirements.txt
+---
 
-# Create .env file:
+### Backend Setup
+
+#### Option 1: Excel Version (Recommended for Quick Start)
+1. Navigate to the server directory:
+    ```bash
+    cd server
+    ```
+
+2. Create a virtual environment:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use: venv\Scripts\activate
+    ```
+
+3. Install Python dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Run the Flask server:
+    ```bash
+    python app.py  # Uses Excel data source
+    ```
+
+---
+
+#### Option 2: PostgreSQL Version
+1. Ensure PostgreSQL is installed and running.
+
+2. Create the database:
+    ```sql
+    CREATE DATABASE statisman;
+    ```
+
+3. Import the database dump:
+    ```bash
+    psql -U your_username quantifico < data/statisman_db.sql
+    ```
+
+4. Navigate to the server directory and create a virtual environment:
+    ```bash
+    cd server
+    python -m venv venv
+    source venv/bin/activate  # On Windows use: venv\Scripts\activate
+    ```
+
+5. Install Python dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+6. Run the PostgreSQL version of the Flask server:
+    ```bash
+    python app_postgresql.py
+    ```
+
+---
+
+### Frontend Setup
+
+1. Navigate to the client directory:
+    ```bash
+    cd client
+    ```
+
+2. Install npm packages:
+    ```bash
+    npm install
+    ```
+
+3. Create a `.env` file in the client directory with the following contents:
+    ```
+    REACT_APP_GOOGLE_API_KEY=your_google_api_key
+    REACT_APP_GOOGLE_CX=your_google_custom_search_cx
+    ```
+
+4. Start the React development server:
+    ```bash
+    npm start
+    ```
+
+---
+
+### Environment Variables
+
+#### Frontend (`.env`)
+```plaintext
+REACT_APP_GOOGLE_API_KEY=your_google_api_key
+REACT_APP_GOOGLE_CX=your_google_custom_search_cx
+```
+
+#### Backend (`.env`)
+```plaintext
 DB_HOST=localhost
-DB_NAME=quantifico
-DB_USER=your_db_user
+DB_NAME=statisman
+DB_USER=your_username
 DB_PASSWORD=your_password
 DB_PORT=5432
 ```
 
-### Running the Application
+---
 
-#### For Excel Version:
-```bash
-python app.py
-```
+### Accessing the Application
 
-#### For PostgreSQL Version:
-1. Setup Database:
-```sql
-CREATE DATABASE quantifico;
-```
+- **Frontend**: [http://localhost:3000](http://localhost:3000)  
+- **Backend API**: [http://localhost:8000](http://localhost:8000) (Excel) or [http://localhost:8001](http://localhost:8001) (PostgreSQL)
 
-2. Start Backend:
-```bash
-python app_postgresql.py # or app.py for excel backend
-```
-
-3. Launch Frontend:
-```bash
-cd client
-npm start
-```
-
-Access the dashboard at `http://localhost:3000`
 
 ## Data Attribution
 - Player statistics: FBref.com and StatsBomb
