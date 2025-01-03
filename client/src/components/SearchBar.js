@@ -17,7 +17,7 @@ const SearchBar = ({ onPlayerSelect }) => {
 
       setIsLoading(true);
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/search?q=${searchTerm}`);
+        const response = await axios.get(`http://127.0.0.1:8001/api/search?q=${searchTerm}`);
         setSuggestions(response.data.players.slice(0, 5));
       } catch (error) {
         console.error('Error fetching suggestions:', error);
