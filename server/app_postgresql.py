@@ -38,6 +38,50 @@ def get_db_connection():
         print(f"Error connecting to the database: {e}")
         return None
 
+@app.route('/api/search', methods=['GET'])
+def search_players():
+    try:
+        query = request.args.get('q', '').lower()
+        if not query:
+            return jsonify({'players': []})
+        
+        connection = get_db_connection()
+        if not connection:
+            return jsonify({"error": "Failed to connect to the database"}), 500
+
+        with connection.cursor() as cursor:
+            # Advanced search query with multiple match strategies
+            search_query = """
+            SELECT DISTINCT player
+            FROM players_info
+            WHERE 
+                LOWER(player) LIKE %s OR  -- Partial name match
+                LOWER(player) LIKE %s OR  -- First word match
+                LOWER(player) LIKE %s     -- Last word match
+            LIMIT 5
+            """
+            
+            # Different search pattern variations
+            search_patterns = [
+                f'%{query}%',              # Anywhere in name
+                f'{query}%',               # Starting of name
+                f'% {query}%'              # After a space (word start)
+            ]
+            
+            cursor.execute(search_query, search_patterns)
+            matches = [row[0] for row in cursor.fetchall()]
+
+        connection.close()
+        
+        # Sort matches to ensure consistent order
+        matches = sorted(list(set(matches)))[:5]
+        
+        return jsonify({'players': matches})
+        
+    except Exception as e:
+        print(f"Error in search: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/player/<player_name>', methods=['GET'])
 def get_player_info(player_name):
     """
